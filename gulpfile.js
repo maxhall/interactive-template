@@ -10,6 +10,7 @@ var rollupCommonjs = require('rollup-plugin-commonjs');
 var babel = require('rollup-plugin-babel');
 var source = require('vinyl-source-stream');
 var del = require('del');
+var eslint = require('gulp-eslint');
 
 gulp.task('default', ['styles', 'scripts'], function() {
   console.log('Thus Spake Zara – Love Island, 2016')
@@ -47,6 +48,12 @@ gulp.task('scripts', function() {
     }))
 });
 
+gulp.task('lint', function() {
+  return gulp.src(['src/scripts/**/*.js', '!node_modules/**'])
+    .pipe(eslint())
+    .pipe(eslint.format());
+});
+
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
@@ -57,9 +64,9 @@ gulp.task('browserSync', function() {
 
 gulp.task('clean', () => del(['main.css', 'bundle.js', 'bundle.js.map']));
 
-gulp.task('watch', ['browserSync', 'styles', 'scripts'], function() {
+gulp.task('watch', ['browserSync', 'styles', 'scripts', 'lint'], function() {
   gulp.watch('src/styles/**/*.scss', ['styles']);
-  gulp.watch('src/scripts/**/*.js', ['scripts']);
+  gulp.watch('src/scripts/**/*.js', ['lint', 'scripts']);
   gulp.watch('*.html', function() {
     browserSync.reload();
   });
