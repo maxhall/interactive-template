@@ -11,6 +11,7 @@ var babel = require('rollup-plugin-babel');
 var source = require('vinyl-source-stream');
 var del = require('del');
 var eslint = require('gulp-eslint');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('default', ['styles', 'scripts'], function() {
   console.log('Thus Spake Zara – Love Island, 2016')
@@ -18,9 +19,11 @@ gulp.task('default', ['styles', 'scripts'], function() {
 
 gulp.task('styles', function() {
   return gulp.src('src/styles/main.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(autoprefixer())
     .pipe(cssnano())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(''))
     .pipe(browserSync.reload({
       stream: true
@@ -39,6 +42,7 @@ gulp.task('scripts', function() {
         plugins: ["external-helpers"]
       })
     ],
+    sourceMap: true,
     format: 'iife'
   })
     .pipe(source('bundle.js'))
