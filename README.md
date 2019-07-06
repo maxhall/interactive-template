@@ -4,7 +4,7 @@ A simple template to get you up and running developing responsive embedded eleme
 
 Uses [Pym.js](http://blog.apps.npr.org/pym.js/) for responsive iframes, [Rollup](https://github.com/rollup/rollup) for bundling, [Babel](https://github.com/babel/babel) to transpile Javascript and [Sass](http://sass-lang.com/) for better css.
 
-This project was designed to meet the needs of [Honi Soit](http://www.honisoit.com) and is heavily inspired by the Guardian's cool [interactive atom template](https://www.github.com/guardian/interactive-atom-template).
+This project was originally designed to meet the needs of [Honi Soit](http://www.honisoit.com) and is heavily inspired by the Guardian's cool [interactive atom template](https://www.github.com/guardian/interactive-atom-template).
 
 ## Installation
 
@@ -14,6 +14,7 @@ This project was designed to meet the needs of [Honi Soit](http://www.honisoit.c
 4. Run `npm install`
 
 ## Usage
+
 Run `gulp watch`. You can now see any changes you make to the source files live at `localhost:3000`.
 
 Edit the index.html and the sass and javascript to your heart's content. Place any static assets in the `assets` folder.

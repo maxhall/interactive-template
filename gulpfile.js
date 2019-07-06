@@ -42,9 +42,9 @@ gulp.task('scripts', function() {
         plugins: ["external-helpers"]
       })
     ],
-    sourceMap: true,
     format: 'iife'
   })
+    .pipe(sourcemaps.init())
     .pipe(source('bundle.js'))
     .pipe(gulp.dest(''))
     .pipe(browserSync.reload({
